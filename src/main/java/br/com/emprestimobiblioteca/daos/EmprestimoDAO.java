@@ -87,4 +87,28 @@ public class EmprestimoDAO {
             stmt.executeUpdate();
         }
     }
+
+    public Emprestimo buscarPorId(long codigo) throws SQLException {
+        String sql = "SELECT * FROM emprestimo WHERE codigo = ?";
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, codigo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Emprestimo e = new Emprestimo();
+                    e.setCodigo(rs.getLong("codigo"));
+                    e.setCodAluno(rs.getLong("cod_aluno"));
+                    e.setCodEquipamento(rs.getLong("cod_equipamento"));
+                    e.setDataEmprestimo(rs.getTimestamp("data_emprestimo").toLocalDateTime());
+                    e.setDataDevPrevista(rs.getTimestamp("data_dev_prevista").toLocalDateTime());
+                    Timestamp dataDevReal = rs.getTimestamp("data_dev_real");
+                    e.setDataDevReal(dataDevReal != null ? dataDevReal.toLocalDateTime() : null);
+                    e.setAtrasado(rs.getBoolean("atrasado"));
+                    e.setAtivo(rs.getBoolean("ativo"));
+                    return e;
+                }
+            }
+        }
+        return null;
+    }
 }

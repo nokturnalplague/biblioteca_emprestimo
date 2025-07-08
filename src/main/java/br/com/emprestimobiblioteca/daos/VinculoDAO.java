@@ -69,4 +69,25 @@ public class VinculoDAO {
             stmt.executeUpdate();
         }
     }
+
+    public Vinculo buscarPorId(long codigo) throws SQLException {
+        String sql = "SELECT * FROM vinculo WHERE codigo = ?";
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, codigo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Vinculo v = new Vinculo();
+                    v.setCodigo(rs.getLong("codigo"));
+                    v.setCodAluno(rs.getLong("cod_aluno"));
+                    v.setCodEquipamento(rs.getLong("cod_equipamento"));
+                    v.setQtdEmprestimo(rs.getInt("qtd_emprestimo"));
+                    v.setDataInicio(rs.getTimestamp("data_inicio").toLocalDateTime());
+                    v.setAtivo(rs.getBoolean("ativo"));
+                    return v;
+                }
+            }
+        }
+        return null;
+    }
 }
