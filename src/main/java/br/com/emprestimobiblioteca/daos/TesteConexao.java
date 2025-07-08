@@ -1,4 +1,4 @@
-package br.com.emprestimobiblioteca;
+package br.com.emprestimobiblioteca.daos;
 
 import java.sql.Connection;
 import br.com.emprestimobiblioteca.daos.Conexao;
