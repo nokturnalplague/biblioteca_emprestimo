@@ -13,6 +13,16 @@ public class Equipamento {
 
     public Equipamento() {}
 
+    public Equipamento(long codigo, String tipo, String marca, String modelo, String numDeSerie, LocalDateTime dataCadastro, boolean ativo) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.numDeSerie = numDeSerie;
+        this.dataCadastro = dataCadastro;
+        this.ativo = ativo;
+    }
+
     public long getCodigo() { return codigo; }
     public void setCodigo(long codigo) { this.codigo = codigo; }
 
@@ -33,4 +43,15 @@ public class Equipamento {
 
     public boolean isAtivo() { return ativo; }
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
+
+    @Override
+    public String toString() {
+        return "ID: " + codigo +
+                ", Tipo: " + tipo +
+                ", Marca: " + marca +
+                ", Modelo: " + modelo +
+                ", Nº de Série: " + numDeSerie +
+                ", Data de Cadastro: " + dataCadastro +
+                ", Ativo: " + (ativo ? "Sim" : "Não");
+    }
 }

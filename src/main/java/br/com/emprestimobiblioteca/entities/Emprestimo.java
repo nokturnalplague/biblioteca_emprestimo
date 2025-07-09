@@ -11,8 +11,19 @@ public class Emprestimo {
     private LocalDateTime dataDevReal; // pode ser null
     private boolean atrasado;
     private boolean ativo;
+    private LocalDateTime dataDevolucao;
+
 
     public Emprestimo() {}
+
+    public Emprestimo(long codigo, long codAluno, long codEquipamento, LocalDateTime dataEmprestimo, LocalDateTime dataDevolucao, boolean ativo) {
+        this.codigo = codigo;
+        this.codAluno = codAluno;
+        this.codEquipamento = codEquipamento;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.ativo = ativo;
+    }
 
     public long getCodigo() { return codigo; }
     public void setCodigo(long codigo) { this.codigo = codigo; }
@@ -37,4 +48,24 @@ public class Emprestimo {
 
     public boolean isAtivo() { return ativo; }
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
+
+    public LocalDateTime getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDateTime dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + codigo +
+                ", Aluno ID: " + codAluno +
+                ", Equipamento ID: " + codEquipamento +
+                ", Data Empréstimo: " + dataEmprestimo +
+                ", Data Devolução: " + (dataDevolucao != null ? dataDevolucao : "Ainda não devolvido") +
+                ", Ativo: " + (ativo ? "Sim" : "Não");
+    }
+
+
 }

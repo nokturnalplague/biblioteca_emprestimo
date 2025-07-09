@@ -14,6 +14,18 @@ public class Aluno {
 
     public Aluno() {}
 
+    public Aluno(long codigo, String nome, long matricula, String curso, String email, String telefone, LocalDateTime dataCadastro, boolean ativo) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.curso = curso;
+        this.email = email;
+        this.telefone = telefone;
+        this.dataCadastro = dataCadastro;
+        this.ativo = ativo;
+    }
+
+
     public long getCodigo() { return codigo; }
     public void setCodigo(long codigo) { this.codigo = codigo; }
 
@@ -37,4 +49,17 @@ public class Aluno {
 
     public boolean isAtivo() { return ativo; }
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
+
+    @Override
+    public String toString() {
+        return "ID: " + codigo +
+                ", Nome: " + nome +
+                ", Matrícula: " + matricula +
+                ", Curso: " + curso +
+                ", Email: " + email +
+                ", Telefone: " + telefone +
+                ", Data de Cadastro: " + dataCadastro +
+                ", Ativo: " + (ativo ? "Sim" : "Não");
+    }
+
 }

@@ -20,6 +20,14 @@ public class EquipamentoController {
         return service.buscarPorId(id);
     }
 
+    public void atualizar(Equipamento equipamento) throws SQLException {
+        service.atualizar(equipamento);
+    }
+
+    public void deletar(long id) throws SQLException {
+        service.deletar(id);
+    }
+
     public void atualizarEquipamento(Equipamento equipamento) throws SQLException {
         service.atualizar(equipamento);
     }
@@ -27,4 +35,7 @@ public class EquipamentoController {
     public void deletarEquipamento(long id) throws SQLException {
         service.deletar(id);
     }
+
+
+
 }
